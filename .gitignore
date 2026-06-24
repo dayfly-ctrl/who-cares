@@ -1,0 +1,27 @@
+# ── Python ──────────────────────────────
+__pycache__/
+*.py[cod]
+*.pyo
+.env
+*.egg-info/
+.venv/
+venv/
+
+# ── SQLite DB (시드 데이터는 코드로 재생성됨) ──
+*.db
+*.db-journal
+who_cares_api/data/
+
+# ── Flutter ─────────────────────────────
+who_cares/.dart_tool/
+who_cares/build/
+who_cares/.flutter-plugins
+who_cares/.flutter-plugins-dependencies
+who_cares/.packages
+
+# ── OS / IDE ────────────────────────────
+.DS_Store
+Thumbs.db
+.idea/
+.vscode/
+*.swp
