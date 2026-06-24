@@ -1,7 +1,7 @@
 import 'dart:convert';
 import 'package:http/http.dart' as http;
 
-const _base = 'http://localhost:8000';
+const _base = 'https://who-cares-api-production.up.railway.app';
 
 Future<Map<String, dynamic>> fetchBalance() async {
   final r = await http.get(Uri.parse('$_base/api/balance/'));
