@@ -1,6 +1,13 @@
+import os
 from sqlalchemy import create_engine
 from sqlalchemy.orm import sessionmaker, declarative_base
 from config import settings
+
+# Ensure the SQLite data directory exists (not tracked in git)
+_db_path = settings.DB_URL.replace("sqlite:///", "")
+_db_dir = os.path.dirname(_db_path)
+if _db_dir:
+    os.makedirs(_db_dir, exist_ok=True)
 
 engine = create_engine(
     settings.DB_URL,
