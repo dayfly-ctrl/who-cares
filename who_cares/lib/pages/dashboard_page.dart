@@ -64,6 +64,12 @@ String _fmtNum(num n) {
   return '${n < 0 ? '-' : ''}$buf원';
 }
 
+// Wide screen = light background, so text must be dark.
+Color _textColor(BuildContext context) =>
+    MediaQuery.of(context).size.width > 700
+        ? const Color(0xFF1A1A1A)
+        : Colors.white;
+
 // ─── Dashboard Page ───────────────────────────────────────────────────────────
 class DashboardPage extends StatefulWidget {
   const DashboardPage({super.key});
@@ -501,7 +507,7 @@ class _BalRow extends StatelessWidget {
         Text(
           value,
           style: TextStyle(
-            color: Colors.white,
+            color: _textColor(context),
             fontSize: bold ? 15 : 13,
             fontWeight: bold ? FontWeight.w700 : FontWeight.w400,
           ),
@@ -606,7 +612,7 @@ class _ReportRow extends StatelessWidget {
       Text(label, style: const TextStyle(color: _kGray, fontSize: 12)),
       if (value.isNotEmpty) ...[
         const SizedBox(width: 8),
-        Text(value, style: const TextStyle(color: Colors.white, fontSize: 13)),
+        Text(value, style: TextStyle(color: _textColor(context), fontSize: 13)),
       ],
       const Spacer(),
       if (trailing != null)
@@ -694,7 +700,7 @@ class _TC extends StatelessWidget {
       child: Text(
         text,
         style: TextStyle(
-          color: color ?? (header ? _kGray : Colors.white),
+          color: color ?? (header ? _kGray : _textColor(context)),
           fontSize: header ? 10 : 11,
         ),
         overflow: TextOverflow.ellipsis,
@@ -900,7 +906,7 @@ class _TxC extends StatelessWidget {
       child: Text(
         text,
         style: TextStyle(
-          color: color ?? (header ? _kGray : Colors.white),
+          color: color ?? (header ? _kGray : _textColor(context)),
           fontSize: 10,
           height: 1.4,
         ),
@@ -980,8 +986,8 @@ class _SectionLabel extends StatelessWidget {
   Widget build(BuildContext context) {
     return Text(
       text,
-      style: const TextStyle(
-        color: Colors.white,
+      style: TextStyle(
+        color: _textColor(context),
         fontSize: 18,
         fontWeight: FontWeight.w800,
         letterSpacing: -0.2,
@@ -1034,7 +1040,7 @@ class _TabToggle extends StatelessWidget {
             child: Text(
               tabs[i],
               style: TextStyle(
-                color: selected ? Colors.white : _kGray,
+                color: selected ? _textColor(context) : _kGray,
                 fontWeight:
                     selected ? FontWeight.w700 : FontWeight.w400,
                 fontSize: 13,
